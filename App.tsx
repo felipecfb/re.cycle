@@ -1,13 +1,15 @@
 import React from "react";
-import { NativeBaseProvider } from "native-base";
+import { Flex, NativeBaseProvider } from "native-base";
 
-import { Home } from "./src/screens/Home";
+import { Welcome } from "./src/screens/Welcome";
 import { theme } from "./src/styles/theme";
 
 export default function App() {
   return (
     <NativeBaseProvider theme={theme}>
-      <Home />
+      <Flex flex="1" bg="amber.50">
+      <Welcome />
+      </Flex>
     </NativeBaseProvider>
   );
 }
