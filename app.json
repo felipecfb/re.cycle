@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "re.cycle",
+    "slug": "re.cycle",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
