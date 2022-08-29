@@ -1,11 +1,12 @@
 import React from "react";
-import { View } from "react-native";
+import { NativeBaseProvider } from "native-base";
+
 import { Home } from "./src/screens/Home";
 
 export default function App() {
   return (
-    <View>
+    <NativeBaseProvider>
       <Home />
-    </View>
+    </NativeBaseProvider>
   );
 }

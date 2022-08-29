@@ -1,5 +1,8 @@
-import { Text } from "react-native";
+import React from "react";
+import { Box } from "native-base";
 
 export function Home() {
-  return <Text>Hello world!</Text>;
+  return (
+    <Box>Hello world</Box>
+  );
 }
