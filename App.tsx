@@ -1,15 +1,24 @@
 import React from "react";
-import { Flex, NativeBaseProvider } from "native-base";
+import { Box, NativeBaseProvider } from "native-base";
+
+import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
 import { Welcome } from "./src/screens/Welcome";
+import { SignIn } from "./src/screens/SignIn";
+
 import { theme } from "./src/styles/theme";
 
 export default function App() {
   return (
     <NativeBaseProvider theme={theme}>
-      <Flex flex="1" bg="amber.50">
-      <Welcome />
-      </Flex>
+      <Box
+        paddingTop={getStatusBarHeight()}
+        paddingX={4}
+        flex={1}
+        bg="amber.50"
+      >
+        <SignIn />
+      </Box>
     </NativeBaseProvider>
   );
 }
