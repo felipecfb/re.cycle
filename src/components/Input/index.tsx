@@ -1,7 +1,6 @@
 import { Icon, Input as NativeInput } from "native-base";
 import React from "react";
 import { RFValue } from "react-native-responsive-fontsize";
-import { AntDesign } from "@expo/vector-icons";
 
 import { IInputProps } from "./types";
 
@@ -10,7 +9,7 @@ export function Input({ icon, type, placeholder, ...rest }: IInputProps) {
     <NativeInput
       InputLeftElement={
         <Icon
-          as={<AntDesign name={icon} />}
+          as={icon}
           mr="2"
           size={7}
           color="green.900"

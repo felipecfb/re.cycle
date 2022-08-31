@@ -7,6 +7,7 @@ import { Welcome } from "./src/screens/Welcome";
 import { SignIn } from "./src/screens/SignIn";
 
 import { theme } from "./src/styles/theme";
+import { SignUp } from "./src/screens/SignUp";
 
 export default function App() {
   return (
@@ -17,7 +18,7 @@ export default function App() {
         flex={1}
         bg="amber.50"
       >
-        <SignIn />
+        <SignUp />
       </Box>
     </NativeBaseProvider>
   );
