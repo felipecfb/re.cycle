@@ -8,8 +8,6 @@ import {
   FormControl,
   Stack,
   Button,
-  Divider,
-  HStack,
 } from "native-base";
 import { RFValue } from "react-native-responsive-fontsize";
 
@@ -18,7 +16,6 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from "@expo/vector-icons";
 
 import { Input } from "../../components/Input";
-import { SocialLoginCards } from "../../components/SocialLoginCards";
 
 export function SignUp() {
   const [show, setShow] = useState(false);
