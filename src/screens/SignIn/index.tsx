@@ -22,15 +22,15 @@ export function SignIn() {
 
   return (
     <Flex align="center" justify="center" px="5">
-      <Heading color="green.900" fontSize={RFValue(18)}>
+      <Heading color="green.900" fontSize={RFValue(24)}>
         Welcome back
       </Heading>
-      <Text color="lime.200" fontSize={RFValue(10)}>
-        SignIn to your account
+      <Text color="lime.200" fontSize={RFValue(12)} mt="2">
+        Sign in to your account
       </Text>
       <FormControl mt="10">
         <Stack space="4">
-          <Input type="text" placeholder="Email adress" icon="user" />
+          <Input type="text" placeholder="Email address" icon="user" />
           <Input
             type={show ? "text" : "password"}
             placeholder="Password"
@@ -46,7 +46,9 @@ export function SignIn() {
               </Pressable>
             }
           />
-          <Text></Text>
+          <Text color="green.900" fontSize={RFValue(10)} textAlign="right" textDecorationLine="underline">
+            Forgot password?
+          </Text>
         </Stack>
         <Button
           mt="5"
@@ -67,7 +69,7 @@ export function SignIn() {
         <Divider thickness={2} bg="green.900" />
       </Flex>
 
-      <HStack space={5} maxW="100%" mt="5">
+      <HStack space={5} maxW="100%" my="5">
         <SocialLoginCards
           socialIcon="github"
           socialName="GitHub"
@@ -79,6 +81,19 @@ export function SignIn() {
           onPress={() => {}}
         />
       </HStack>
+
+      <Flex textAlign="center" justify="center" align="center" mt="5">
+        <Text fontSize={RFValue(12)} color="lime.200">
+          You don't have an account?
+        </Text>
+        <Text
+          fontSize={RFValue(12)}
+          color="green.900"
+          textDecorationLine="underline"
+        >
+          Sign up
+        </Text>
+      </Flex>
     </Flex>
   );
 }
