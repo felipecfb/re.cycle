@@ -1,8 +1,8 @@
 import React from "react";
-
-import Logo from "../../assets/logo.svg";
-import BannerHome from "../../assets/bannerHome.svg";
 import { Button, Flex, Link, Text } from "native-base";
+
+import BannerHome from "../../assets/bannerHome.svg";
+import Logo from "../../assets/logo.svg";
 
 export function Welcome() {
   return (

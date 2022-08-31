@@ -1,21 +1,11 @@
-import {
-  Flex,
-  IInputProps as IInputPropsNativeBase,
-  Icon,
-  Input as NativeInput,
-} from "native-base";
+import { Icon, Input as NativeInput } from "native-base";
 import React from "react";
-
-import { AntDesign } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
+import { AntDesign } from "@expo/vector-icons";
 
-interface InputProps extends IInputPropsNativeBase {
-  icon: React.ComponentProps<typeof AntDesign>["name"];
-  type: "text" | "password";
-  placeholder: string;
-}
+import { IInputProps } from "./types";
 
-export function Input({ icon, type, placeholder, ...rest }: InputProps) {
+export function Input({ icon, type, placeholder, ...rest }: IInputProps) {
   return (
     <NativeInput
       InputLeftElement={

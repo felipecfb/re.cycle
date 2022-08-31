@@ -11,11 +11,10 @@ import {
   Divider,
   HStack,
 } from "native-base";
-
-import { Input } from "../../components/Input";
-
 import { Entypo } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
+
+import { Input } from "../../components/Input";
 import { SocialLoginCards } from "../../components/SocialLoginCards";
 
 export function SignIn() {
@@ -69,8 +68,16 @@ export function SignIn() {
       </Flex>
 
       <HStack space={5} maxW="100%" mt="5">
-        <SocialLoginCards socialIcon="github" socialName="GitHub" onPress={() => {}} />
-        <SocialLoginCards socialIcon="google" socialName="Google" onPress={() => {}} />
+        <SocialLoginCards
+          socialIcon="github"
+          socialName="GitHub"
+          onPress={() => {}}
+        />
+        <SocialLoginCards
+          socialIcon="google"
+          socialName="Google"
+          onPress={() => {}}
+        />
       </HStack>
     </Flex>
   );
