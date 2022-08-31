@@ -5,9 +5,9 @@ import { getStatusBarHeight } from "react-native-iphone-x-helper";
 
 import { Welcome } from "./src/screens/Welcome";
 import { SignIn } from "./src/screens/SignIn";
+import { SignUp } from "./src/screens/SignUp";
 
 import { theme } from "./src/styles/theme";
-import { SignUp } from "./src/screens/SignUp";
 
 export default function App() {
   return (
@@ -18,7 +18,7 @@ export default function App() {
         flex={1}
         bg="amber.50"
       >
-        <SignUp />
+        <SignIn />
       </Box>
     </NativeBaseProvider>
   );

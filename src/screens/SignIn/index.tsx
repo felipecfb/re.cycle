@@ -11,8 +11,11 @@ import {
   Divider,
   HStack,
 } from "native-base";
-import { Entypo } from "@expo/vector-icons";
 import { RFValue } from "react-native-responsive-fontsize";
+
+import { Entypo } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { AntDesign } from "@expo/vector-icons";
 
 import { Input } from "../../components/Input";
 import { SocialLoginCards } from "../../components/SocialLoginCards";
@@ -30,11 +33,15 @@ export function SignIn() {
       </Text>
       <FormControl mt="10">
         <Stack space="4">
-          <Input type="text" placeholder="Email address" icon="user" />
+          <Input
+            type="text"
+            placeholder="Email address"
+            icon={<MaterialCommunityIcons name="email-multiple-outline" />}
+          />
           <Input
             type={show ? "text" : "password"}
             placeholder="Password"
-            icon="unlock"
+            icon={<Icon as={<AntDesign name="unlock" />} />}
             InputRightElement={
               <Pressable onPress={() => setShow(!show)}>
                 <Icon
