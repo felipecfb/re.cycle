@@ -46,7 +46,12 @@ export function SignIn() {
               </Pressable>
             }
           />
-          <Text color="green.900" fontSize={RFValue(10)} textAlign="right" textDecorationLine="underline">
+          <Text
+            color="green.900"
+            fontSize={RFValue(10)}
+            textAlign="right"
+            textDecorationLine="underline"
+          >
             Forgot password?
           </Text>
         </Stack>
@@ -56,6 +61,10 @@ export function SignIn() {
           _text={{
             fontSize: RFValue(12),
             fontWeight: "700",
+          }}
+          _pressed={{
+            opacity: 0.8,
+            bg: "green.900",
           }}
         >
           Sign In
@@ -86,13 +95,21 @@ export function SignIn() {
         <Text fontSize={RFValue(12)} color="lime.200">
           You don't have an account?
         </Text>
-        <Text
-          fontSize={RFValue(12)}
-          color="green.900"
-          textDecorationLine="underline"
+        <Button
+          _text={{
+            fontSize: RFValue(12),
+            color: "green.900",
+            textDecorationLine: "underline",
+            fontWeight: 700,
+          }}
+          bg="transparent"
+          _pressed={{
+            bg: "transparent",
+            opacity: 0.8,
+          }}
         >
           Sign up
-        </Text>
+        </Button>
       </Flex>
     </Flex>
   );
