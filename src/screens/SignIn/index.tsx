@@ -21,9 +21,8 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
+import { Input, SocialLoginCards } from "../../components";
 
-import { Input } from "../../components/Input";
-import { SocialLoginCards } from "../../components/SocialLoginCards";
 
 export function SignIn() {
   const [show, setShow] = useState(false);

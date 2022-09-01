@@ -14,8 +14,8 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { AntDesign } from "@expo/vector-icons";
+import { Input } from "../../components";
 
-import { Input } from "../../components/Input";
 
 export function SignUp() {
   const [show, setShow] = useState(false);

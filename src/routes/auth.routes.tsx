@@ -1,9 +1,6 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-
-import { Welcome } from "../screens/Welcome";
-import { SignIn } from "../screens/SignIn";
-import { SignUp } from "../screens/SignUp";
+import { SignIn, SignUp, Welcome } from "../screens";
 
 export function AuthRoutes() {
   const { Navigator, Screen } = createStackNavigator();
