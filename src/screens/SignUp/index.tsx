@@ -12,13 +12,19 @@ import {
 import { RFValue } from "react-native-responsive-fontsize";
 
 import { Entypo } from "@expo/vector-icons";
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Input } from "../../components";
-
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native";
 
 export function SignUp() {
   const [show, setShow] = useState(false);
+
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
   return (
     <Flex align="center" justify="center" pt="10" px="5" safeArea>
@@ -30,8 +36,20 @@ export function SignUp() {
       </Text>
       <FormControl mt="10">
         <Stack space="10">
-          <Input type="text" placeholder="Name" icon={<Icon as={<AntDesign name="user" />} />} />
-          <Input type="text" placeholder="Email address" icon={<Icon as={<MaterialCommunityIcons name="email-multiple-outline" />} />} />
+          <Input
+            type="text"
+            placeholder="Name"
+            icon={<Icon as={<AntDesign name="user" />} />}
+          />
+          <Input
+            type="text"
+            placeholder="Email address"
+            icon={
+              <Icon
+                as={<MaterialCommunityIcons name="email-multiple-outline" />}
+              />
+            }
+          />
           <Input
             type={show ? "text" : "password"}
             placeholder="Password"
@@ -80,6 +98,7 @@ export function SignUp() {
             bg: "transparent",
             opacity: 0.8,
           }}
+          onPress={() => navigation.navigate("SignIn")}
         >
           Sign in
         </Button>
