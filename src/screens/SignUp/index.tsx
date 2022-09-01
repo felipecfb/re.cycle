@@ -30,7 +30,7 @@ export function SignUp() {
       </Text>
       <FormControl mt="10">
         <Stack space="10">
-          <Input type="text" placeholder="Email address" icon={<Icon as={<AntDesign name="user" />} />} />
+          <Input type="text" placeholder="Name" icon={<Icon as={<AntDesign name="user" />} />} />
           <Input type="text" placeholder="Email address" icon={<Icon as={<MaterialCommunityIcons name="email-multiple-outline" />} />} />
           <Input
             type={show ? "text" : "password"}

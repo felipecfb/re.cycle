@@ -11,6 +11,11 @@ import {
   Divider,
   HStack,
 } from "native-base";
+import {
+  NavigationProp,
+  ParamListBase,
+  useNavigation,
+} from "@react-navigation/native";
 import { RFValue } from "react-native-responsive-fontsize";
 
 import { Entypo } from "@expo/vector-icons";
@@ -22,6 +27,8 @@ import { SocialLoginCards } from "../../components/SocialLoginCards";
 
 export function SignIn() {
   const [show, setShow] = useState(false);
+
+  const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
   return (
     <Flex align="center" justify="center" px="5">
@@ -114,6 +121,7 @@ export function SignIn() {
             bg: "transparent",
             opacity: 0.8,
           }}
+          onPress={() => navigation.navigate("SignUp")}
         >
           Sign up
         </Button>
