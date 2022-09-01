@@ -30,7 +30,7 @@ export function SignIn() {
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
   return (
-    <Flex align="center" justify="center" px="5">
+    <Flex align="center" justify="center" pt="10" px="5" safeArea>
       <Heading color="green.900" fontSize={RFValue(24)}>
         Welcome back
       </Heading>
