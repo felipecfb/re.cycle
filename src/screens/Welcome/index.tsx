@@ -32,11 +32,12 @@ export function Welcome() {
         </Text>
       </Button>
       <Text fontSize={RFValue(12)} color="lime.200" textAlign="center" mt="4">
-        Do you not have an account? {"\n"}
+        You don't have an account? {"\n"}
         <Text
-          color="lime.200"
+          color="green.900"
           fontWeight="700"
           onPress={() => navigation.navigate("SignUp")}
+          textDecorationLine="underline"
         >
           Sign up
         </Text>
