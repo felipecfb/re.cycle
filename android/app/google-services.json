@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "105524699294",
+    "project_id": "reciclo-bda4f",
+    "storage_bucket": "reciclo-bda4f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:105524699294:android:bdf5bbbee667e30fc6db8f",
+        "android_client_info": {
+          "package_name": "com.recycle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "105524699294-p77imvasme6uhpj7ni01f0e6814neder.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiBnWy_TlaSrwLUXo9MWJqKsqLdwfoGAc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "105524699294-p77imvasme6uhpj7ni01f0e6814neder.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
