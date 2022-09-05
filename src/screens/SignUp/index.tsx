@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Flex,
   Heading,
@@ -20,8 +20,12 @@ import {
   ParamListBase,
   useNavigation,
 } from "@react-navigation/native";
+import { AuthContext } from "../../context/AuthContext";
 
 export function SignUp() {
+  const { email, password, setEmail, setPassword, handleCreateUserAccount } =
+    useContext(AuthContext);
+
   const [show, setShow] = useState(false);
 
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
@@ -49,6 +53,8 @@ export function SignUp() {
                 as={<MaterialCommunityIcons name="email-multiple-outline" />}
               />
             }
+            value={email}
+            onChangeText={setEmail}
           />
           <Input
             type={show ? "text" : "password"}
@@ -64,6 +70,8 @@ export function SignUp() {
                 />
               </Pressable>
             }
+            value={password}
+            onChangeText={setPassword}
           />
         </Stack>
         <Button
@@ -77,6 +85,7 @@ export function SignUp() {
             opacity: 0.8,
             bg: "green.900",
           }}
+          onPress={handleCreateUserAccount}
         >
           Sign Up
         </Button>
