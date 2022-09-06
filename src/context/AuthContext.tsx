@@ -1,5 +1,6 @@
 import { createContext, Dispatch, ReactNode, useState } from "react";
 import auth from "@react-native-firebase/auth";
+import firestore from "@react-native-firebase/firestore";
 import { Alert } from "react-native";
 
 interface AuthProviderProps {
@@ -7,8 +8,10 @@ interface AuthProviderProps {
 }
 
 interface AuthContextProps {
+  name: string;
   email: string;
   password: string;
+  setName: Dispatch<React.SetStateAction<string>>;
   setEmail: Dispatch<React.SetStateAction<string>>;
   setPassword: Dispatch<React.SetStateAction<string>>;
   handleCreateUserAccount: () => void;
@@ -17,10 +20,12 @@ interface AuthContextProps {
 export const AuthContext = createContext({} as AuthContextProps);
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   function resetForm() {
+    setName("");
     setEmail("");
     setPassword("");
   }
@@ -28,7 +33,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
   function handleCreateUserAccount() {
     auth()
       .createUserWithEmailAndPassword(email, password)
-      .then(() => Alert.alert("Usuário criado com sucesso!"))
+      .then((data) => {
+        const userInfo = data.user;
+        const userUID = userInfo.uid;
+        firestore()
+          .collection("users")
+          .doc(userUID)
+          .set({
+            displayName: name,
+            email,
+          })
+          .then(() => Alert.alert("Usuário criado com sucesso!"))
+          .catch((error) => {
+            console.log(error);
+          });
+      })
       .catch((error: { code: any }) => {
         switch (error.code) {
           case "auth/email-already-in-use":
@@ -52,8 +71,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
   return (
     <AuthContext.Provider
       value={{
+        name,
         email,
         password,
+        setName,
         setEmail,
         setPassword,
         handleCreateUserAccount,

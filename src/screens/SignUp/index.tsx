@@ -23,8 +23,15 @@ import {
 import { AuthContext } from "../../context/AuthContext";
 
 export function SignUp() {
-  const { email, password, setEmail, setPassword, handleCreateUserAccount } =
-    useContext(AuthContext);
+  const {
+    name,
+    email,
+    password,
+    setName,
+    setEmail,
+    setPassword,
+    handleCreateUserAccount,
+  } = useContext(AuthContext);
 
   const [show, setShow] = useState(false);
 
@@ -44,6 +51,8 @@ export function SignUp() {
             type="text"
             placeholder="Name"
             icon={<Icon as={<AntDesign name="user" />} />}
+            value={name}
+            onChangeText={setName}
           />
           <Input
             type="text"
