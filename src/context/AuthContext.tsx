@@ -1,6 +1,5 @@
 import { createContext, Dispatch, ReactNode, useState } from "react";
 import auth from "@react-native-firebase/auth";
-import firestore from "@react-native-firebase/firestore";
 import { Alert } from "react-native";
 
 interface AuthProviderProps {
@@ -41,59 +40,21 @@ export function AuthProvider({ children }: AuthProviderProps) {
         displayName: name,
       });
 
-      Alert.alert("Sua conta foi criada com sucesso!");
+      Alert.alert("Your account has been created successfully!");
       resetForm();
     } catch (error) {
       switch (error) {
         case "auth/email-already-in-use":
-          Alert.alert(
-            "E-mail não disponível. Escolha outro e-mail para cadastrar!"
-          );
+          Alert.alert("Email address already in use!");
           break;
         case "auth/invalid-email":
-          Alert.alert("E-mail inválido!");
+          Alert.alert("Invalid email address!");
           break;
         case "auth/weak-password":
-          Alert.alert("A senha deve ter no mínimo 6 dígitos!");
+          Alert.alert("The password must be at least 6 digits long!");
           break;
       }
     }
-
-    // auth()
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .then((data) => {
-    //     const userInfo = data.user;
-    //     const userUID = userInfo.uid;
-    //     firestore()
-    //       .collection("users")
-    //       .doc(userUID)
-    //       .set({
-    //         displayName: name,
-    //         email,
-    //       })
-    //       .then(() => Alert.alert("Usuário criado com sucesso!"))
-    //       .catch((error) => {
-    //         console.log(error);
-    //       });
-    //   })
-    //   .catch((error: { code: any }) => {
-    //     switch (error.code) {
-    //       case "auth/email-already-in-use":
-    //         Alert.alert(
-    //           "E-mail não disponível. Escolha outro e-mail para cadastrar!"
-    //         );
-    //         break;
-    //       case "auth/invalid-email":
-    //         Alert.alert("E-mail inválido!");
-    //         break;
-    //       case "auth/weak-password":
-    //         Alert.alert("A senha deve ter no mínimo 6 dígitos!");
-    //         break;
-    //     }
-    //   })
-    //   .finally(() => {
-    //     resetForm();
-    //   });
   }
 
   return (
