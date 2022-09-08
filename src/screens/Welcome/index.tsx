@@ -21,12 +21,20 @@ export function Welcome() {
         Help the world and save at the same time!
       </Text>
       <BannerHome width="100%" height="60%" />
-      <Button bg="green.900" w="100%" borderRadius="16px">
+      <Button
+        bg="green.900"
+        w="100%"
+        borderRadius="16px"
+        _pressed={{
+          bg: "green.900",
+          opacity: "0.8",
+        }}
+        onPress={() => navigation.navigate("SignIn")}
+      >
         <Text
           fontSize="xl"
           fontWeight="500"
           color="white"
-          onPress={() => navigation.navigate("SignIn")}
         >
           Login
         </Text>
