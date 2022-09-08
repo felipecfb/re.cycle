@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   Flex,
   Heading,
@@ -22,9 +22,12 @@ import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Input, SocialLoginCards } from "../../components";
+import { AuthContext } from "../../context/AuthContext";
 
 
 export function SignIn() {
+  const { signInWithGoogle } = useContext(AuthContext);
+
   const [show, setShow] = useState(false);
 
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
@@ -100,7 +103,7 @@ export function SignIn() {
         <SocialLoginCards
           socialIcon="google"
           socialName="Google"
-          onPress={() => {}}
+          onPress={signInWithGoogle}
         />
       </HStack>
 

@@ -1,6 +1,13 @@
 import { createContext, Dispatch, ReactNode, useState } from "react";
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
+import { GoogleSignin } from "@react-native-google-signin/google-signin";
+
+GoogleSignin.configure({
+  scopes: ["profile", "email"],
+  webClientId:
+    "597414105012-0hdvaei9hpa2ahaitdau7g4jjp5ndj0s.apps.googleusercontent.com",
+});
 
 interface AuthProviderProps {
   children: ReactNode;
@@ -14,6 +21,7 @@ interface AuthContextProps {
   setEmail: Dispatch<React.SetStateAction<string>>;
   setPassword: Dispatch<React.SetStateAction<string>>;
   handleCreateUserAccount: () => void;
+  signInWithGoogle: () => void;
 }
 
 export const AuthContext = createContext({} as AuthContextProps);
@@ -57,6 +65,17 @@ export function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function signInWithGoogle() {
+    const { idToken } = await GoogleSignin.signIn();
+
+    try {
+      const googleCredential = auth.GoogleAuthProvider.credential(idToken);
+      const { user } = await auth().signInWithCredential(googleCredential);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <AuthContext.Provider
       value={{
@@ -67,6 +86,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setEmail,
         setPassword,
         handleCreateUserAccount,
+        signInWithGoogle,
       }}
     >
       {children}
