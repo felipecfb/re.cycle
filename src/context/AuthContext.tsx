@@ -1,28 +1,14 @@
-import { createContext, Dispatch, ReactNode, useState } from "react";
+import { createContext, useState } from "react";
 import auth from "@react-native-firebase/auth";
 import { Alert } from "react-native";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { AuthContextProps, AuthProviderProps } from "./types";
 
 GoogleSignin.configure({
   scopes: ["profile", "email"],
   webClientId:
     "597414105012-0hdvaei9hpa2ahaitdau7g4jjp5ndj0s.apps.googleusercontent.com",
 });
-
-interface AuthProviderProps {
-  children: ReactNode;
-}
-
-interface AuthContextProps {
-  name: string;
-  email: string;
-  password: string;
-  setName: Dispatch<React.SetStateAction<string>>;
-  setEmail: Dispatch<React.SetStateAction<string>>;
-  setPassword: Dispatch<React.SetStateAction<string>>;
-  handleCreateUserAccount: () => void;
-  signInWithGoogle: () => void;
-}
 
 export const AuthContext = createContext({} as AuthContextProps);
 
