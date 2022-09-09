@@ -23,17 +23,20 @@ import {
 import { AuthContext } from "../../context/AuthContext";
 
 export function SignUp() {
-  const {
-    name,
-    email,
-    password,
-    setName,
-    setEmail,
-    setPassword,
-    handleCreateUserAccount,
-  } = useContext(AuthContext);
-
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
+
+  const { isLoading, signUpWithEmailAndPassword } = useContext(AuthContext);
+
+  async function handleRegister() {
+    try {
+      signUpWithEmailAndPassword(name, email, password);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
 
@@ -94,7 +97,8 @@ export function SignUp() {
             opacity: 0.8,
             bg: "green.900",
           }}
-          onPress={handleCreateUserAccount}
+          onPress={handleRegister}
+          isLoading={isLoading}
         >
           Sign Up
         </Button>

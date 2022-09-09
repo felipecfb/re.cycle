@@ -10,6 +10,7 @@ export function AuthRoutes() {
       screenOptions={{
         headerShown: false,
       }}
+      initialRouteName={'Welcome'}
     >
       <Screen name="Welcome" component={Welcome} />
       <Screen name="SignIn" component={SignIn} />

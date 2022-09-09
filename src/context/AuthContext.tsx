@@ -1,8 +1,9 @@
-import { createContext, useState } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import auth from "@react-native-firebase/auth";
+import firestore from "@react-native-firebase/firestore";
 import { Alert } from "react-native";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
-import { AuthContextProps, AuthProviderProps } from "./types";
+import { AuthContextProps, AuthProviderProps, IUser } from "./types";
 
 GoogleSignin.configure({
   scopes: ["profile", "email"],
@@ -13,29 +14,37 @@ GoogleSignin.configure({
 export const AuthContext = createContext({} as AuthContextProps);
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState<IUser | null>(null);
 
-  function resetForm() {
-    setName("");
-    setEmail("");
-    setPassword("");
-  }
+  const [isLoading, setIsLoading] = useState(false);
 
-  async function handleCreateUserAccount() {
+  async function signUpWithEmailAndPassword(
+    name: string,
+    email: string,
+    password: string
+  ) {
     try {
+      setIsLoading(true);
       const { user } = await auth().createUserWithEmailAndPassword(
         email,
         password
       );
 
-      await user.updateProfile({
+      await firestore().collection("users").doc(user?.uid).set({
+        email,
+        name,
+      });
+
+      await auth().currentUser?.updateProfile({
         displayName: name,
       });
 
+      setUser({ ...user, displayName: name, email });
+
       Alert.alert("Your account has been created successfully!");
-      resetForm();
+
+      setIsLoading(false);
     } catch (error) {
       switch (error) {
         case "auth/email-already-in-use":
@@ -57,21 +66,36 @@ export function AuthProvider({ children }: AuthProviderProps) {
     try {
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
       const { user } = await auth().signInWithCredential(googleCredential);
+
+      setUser({
+        uid: user.uid,
+        displayName: user.displayName!,
+        email: user.email!,
+      });
     } catch (error) {
       console.log(error);
     }
   }
 
+  const onAuthStateChanged = useCallback((): void => {
+    if (user) {
+      setUser(user);
+    }
+
+    if (initializing) setInitializing(false);
+  }, [initializing]);
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    return subscriber;
+  }, [onAuthStateChanged]);
+
   return (
     <AuthContext.Provider
       value={{
-        name,
-        email,
-        password,
-        setName,
-        setEmail,
-        setPassword,
-        handleCreateUserAccount,
+        user,
+        isLoading,
+        signUpWithEmailAndPassword,
         signInWithGoogle,
       }}
     >

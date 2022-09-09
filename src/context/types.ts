@@ -5,13 +5,13 @@ export interface AuthProviderProps {
 }
 
 export interface AuthContextProps {
-  name: string;
-  email: string;
-  password: string;
-  setName: Dispatch<React.SetStateAction<string>>;
-  setEmail: Dispatch<React.SetStateAction<string>>;
-  setPassword: Dispatch<React.SetStateAction<string>>;
-  handleCreateUserAccount: () => void;
+  user: IUser | null;
+  isLoading: boolean;
+  signUpWithEmailAndPassword: (
+    name: string,
+    email: string,
+    password: string
+  ) => void;
   signInWithGoogle: () => void;
 }
 
@@ -19,6 +19,4 @@ export type IUser = {
   uid: string;
   displayName?: string;
   email: string;
-  phoneNumber?: string;
-  photoURL?: string;
-}
+};
