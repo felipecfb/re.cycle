@@ -40,9 +40,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
         displayName: name,
       });
 
-      setUser({ ...user, displayName: name, email });
+      const userData = {
+        uid: user.uid,
+        displayName: user.displayName,
+        email: user.email,
+      } as IUser;
 
-      Alert.alert("Your account has been created successfully!");
+      setUser(userData);
 
       setIsLoading(false);
     } catch (error) {
@@ -67,11 +71,16 @@ export function AuthProvider({ children }: AuthProviderProps) {
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
       const { user } = await auth().signInWithCredential(googleCredential);
 
-      setUser({
+      const userData = {
         uid: user.uid,
-        displayName: user.displayName!,
-        email: user.email!,
-      });
+        displayName: user.displayName,
+        email: user.email,
+        photoURL: user.photoURL
+          ? `https://ui-avatars.com/api/?name=${user.displayName}`
+          : user.photoURL,
+      } as IUser;
+
+      setUser(userData);
     } catch (error) {
       console.log(error);
     }
