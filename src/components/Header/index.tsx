@@ -1,23 +1,34 @@
 import React, { useContext } from "react";
-import { Avatar, Box, Flex, Icon, Text } from "native-base";
+import { Avatar, Flex, Text } from "native-base";
 
-import { Entypo } from "@expo/vector-icons";
-
-import Logo from "../../assets/logo.svg";
 import { RFValue } from "react-native-responsive-fontsize";
+import { AuthContext } from "../../context/AuthContext";
 
 export function Header() {
+  const { user } = useContext(AuthContext);
+
   return (
     <Flex
       bg="white"
       direction="row"
       align="center"
       justify="space-between"
-      p="5"
+      p="7"
+      borderBottomLeftRadius="30px"
+      borderBottomRightRadius="30px"
     >
-      <Icon as={<Entypo name="menu" />} color="green.900" size={10} />
-
-      <Logo width={200} height={50} />
+      <Text fontSize={RFValue(16)}>
+        Hi,
+        <Text color="green.900" fontWeight="700">
+          {" "}
+          {user?.displayName}
+        </Text>
+      </Text>
+      <Avatar
+        source={{
+          uri: user?.photoURL,
+        }}
+      />
     </Flex>
   );
 }
