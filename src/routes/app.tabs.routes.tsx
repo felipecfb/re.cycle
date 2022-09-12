@@ -2,9 +2,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useTheme } from "native-base";
 import React from "react";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
-import { Home } from "../screens";
+import { BarGraph, Profile, CollectionPoints, AllRecycled } from "../screens";
 
 import { Entypo } from "@expo/vector-icons";
+import { FontAwesome } from '@expo/vector-icons';
 
 const { Screen, Navigator } = createBottomTabNavigator();
 
@@ -36,11 +37,39 @@ export function TabsRoutes() {
       })}
     >
       <Screen
-        name="Home"
-        component={Home}
+        name="CollectionPoints"
+        component={CollectionPoints}
         options={{
           tabBarIcon: ({ color }) => (
-            <Entypo name="home" size={24} color={color} />
+            <Entypo name="location-pin" size={24} color={color} />
+          ),
+        }}
+      />
+      <Screen
+        name="Bar Graph"
+        component={BarGraph}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Entypo name="bar-graph" size={24} color={color} />
+          ),
+          
+        }}
+      />
+      <Screen
+        name="All Recycled"
+        component={AllRecycled}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="recycle" size={24} color={color} />
+          ),
+        }}
+      />
+      <Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          tabBarIcon: ({ color }) => (
+            <Entypo name="user" size={24} color={color} />
           ),
         }}
       />
