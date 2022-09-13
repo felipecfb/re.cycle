@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Flex,
   Heading,
@@ -20,7 +20,7 @@ import {
   ParamListBase,
   useNavigation,
 } from "@react-navigation/native";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/AuthContext";
 
 export function SignUp() {
   const [name, setName] = useState("");
@@ -28,7 +28,7 @@ export function SignUp() {
   const [password, setPassword] = useState("");
   const [show, setShow] = useState(false);
 
-  const { isLoading, signUpWithEmailAndPassword } = useContext(AuthContext);
+  const { isLoading, signUpWithEmailAndPassword } = useAuth();
 
   async function handleRegister() {
     try {

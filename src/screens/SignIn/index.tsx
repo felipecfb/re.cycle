@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import {
   Flex,
   Heading,
@@ -22,11 +22,11 @@ import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
 import { Input, SocialLoginCards } from "../../components";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/AuthContext";
 
 
 export function SignIn() {
-  const { signInWithGoogle } = useContext(AuthContext);
+  const { signInWithGoogle } = useAuth();
 
   const [show, setShow] = useState(false);
 

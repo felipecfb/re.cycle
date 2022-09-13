@@ -1,4 +1,10 @@
-import { createContext, useCallback, useEffect, useState } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
 import { Alert } from "react-native";
@@ -13,7 +19,7 @@ GoogleSignin.configure({
 
 export const AuthContext = createContext({} as AuthContextProps);
 
-export function AuthProvider({ children }: AuthProviderProps) {
+function AuthProvider({ children }: AuthProviderProps) {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<IUser | null>(null);
 
@@ -112,3 +118,11 @@ export function AuthProvider({ children }: AuthProviderProps) {
     </AuthContext.Provider>
   );
 }
+
+function useAuth() {
+  const context = useContext(AuthContext);
+
+  return context;
+}
+
+export { AuthProvider, useAuth };

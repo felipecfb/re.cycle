@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Avatar, Flex, Text } from "native-base";
 
 import { RFValue } from "react-native-responsive-fontsize";
-import { AuthContext } from "../../context/AuthContext";
+import { useAuth } from "../../hooks/AuthContext";
 
 export function Header() {
-  const { user } = useContext(AuthContext);
+  const { user } = useAuth();
 
   return (
     <Flex
