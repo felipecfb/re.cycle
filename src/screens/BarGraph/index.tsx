@@ -1,6 +1,6 @@
 import { Flex, Text } from "native-base";
 import React from "react";
-import { Header } from "../../components";
+import { Header } from "@components/Header";
 
 export function BarGraph() {
   return (

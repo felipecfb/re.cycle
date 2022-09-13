@@ -1,5 +1,5 @@
-import { Flex, Text } from "native-base";
 import React from "react";
+import { Flex, Text } from "native-base";
 
 export function CollectionPoints() {
   return (

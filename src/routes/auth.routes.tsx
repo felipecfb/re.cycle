@@ -1,6 +1,9 @@
 import React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { SignIn, SignUp, Welcome } from "../screens";
+
+import { Welcome } from "@screens/Welcome";
+import { SignIn } from "@screens/SignIn";
+import { SignUp } from "@screens/SignUp";
 
 export function AuthRoutes() {
   const { Navigator, Screen } = createStackNavigator();
@@ -10,7 +13,7 @@ export function AuthRoutes() {
       screenOptions={{
         headerShown: false,
       }}
-      initialRouteName={'Welcome'}
+      initialRouteName={"Welcome"}
     >
       <Screen name="Welcome" component={Welcome} />
       <Screen name="SignIn" component={SignIn} />

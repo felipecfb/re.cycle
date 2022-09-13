@@ -8,8 +8,8 @@ import {
 } from "@react-navigation/native";
 import { RFValue } from "react-native-responsive-fontsize";
 
-import BannerHome from "../../assets/bannerHome.svg";
-import Logo from "../../assets/logo.svg";
+import BannerHome from "@assets/bannerHome.svg";
+import Logo from "@assets/logo.svg";
 
 export function Welcome() {
   const navigation = useNavigation<NavigationProp<ParamListBase>>();
@@ -31,11 +31,7 @@ export function Welcome() {
         }}
         onPress={() => navigation.navigate("SignIn")}
       >
-        <Text
-          fontSize="xl"
-          fontWeight="500"
-          color="white"
-        >
+        <Text fontSize="xl" fontWeight="500" color="white">
           Login
         </Text>
       </Button>

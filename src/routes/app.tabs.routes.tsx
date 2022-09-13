@@ -1,11 +1,16 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { useTheme } from "native-base";
 import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getStatusBarHeight } from "react-native-iphone-x-helper";
-import { BarGraph, Profile, CollectionPoints, AllRecycled } from "../screens";
+
+import { BarGraph } from "@screens/BarGraph";
+import { Profile } from "@screens/Profile";
+import { CollectionPoints } from "@screens/CollectionPoints";
+import { AllRecycled } from "@screens/AllRecycled";
 
 import { Entypo } from "@expo/vector-icons";
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome } from "@expo/vector-icons";
+
+import { useTheme } from "native-base";
 
 const { Screen, Navigator } = createBottomTabNavigator();
 
@@ -52,7 +57,6 @@ export function TabsRoutes() {
           tabBarIcon: ({ color }) => (
             <Entypo name="bar-graph" size={24} color={color} />
           ),
-          
         }}
       />
       <Screen

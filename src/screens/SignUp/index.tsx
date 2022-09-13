@@ -14,13 +14,13 @@ import { RFValue } from "react-native-responsive-fontsize";
 import { Entypo } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AntDesign } from "@expo/vector-icons";
-import { Input } from "../../components";
+import { Input } from "@components/Input";
 import {
   NavigationProp,
   ParamListBase,
   useNavigation,
 } from "@react-navigation/native";
-import { useAuth } from "../../hooks/AuthContext";
+import { useAuth } from "@hooks/AuthContext";
 
 export function SignUp() {
   const [name, setName] = useState("");
