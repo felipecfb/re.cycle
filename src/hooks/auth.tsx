@@ -9,6 +9,8 @@ import auth from "@react-native-firebase/auth";
 import firestore from "@react-native-firebase/firestore";
 import { Alert } from "react-native";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 import { AuthContextProps, AuthProviderProps, IUser } from "./types";
 
 GoogleSignin.configure({
@@ -17,10 +19,11 @@ GoogleSignin.configure({
     "597414105012-0hdvaei9hpa2ahaitdau7g4jjp5ndj0s.apps.googleusercontent.com",
 });
 
+const USER_COLLECTION = "@recycle:users";
+
 export const AuthContext = createContext({} as AuthContextProps);
 
 function AuthProvider({ children }: AuthProviderProps) {
-  const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState<IUser | null>(null);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -50,7 +53,10 @@ function AuthProvider({ children }: AuthProviderProps) {
         uid: user.uid,
         displayName: user.displayName,
         email: user.email,
+        photoURL: `https://ui-avatars.com/api/?name=${user.displayName}`,
       } as IUser;
+
+      await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(userData));
 
       setUser(userData);
 
@@ -92,18 +98,23 @@ function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
-  const onAuthStateChanged = useCallback((): void => {
-    if (user) {
-      setUser(user);
+  async function loadUserStorageData() {
+    setIsLoading(true);
+
+    const storedUser = await AsyncStorage.getItem(USER_COLLECTION);
+
+    if (storedUser) {
+      const userData = JSON.parse(storedUser) as IUser;
+      console.log(userData);
+      setUser(userData);
     }
 
-    if (initializing) setInitializing(false);
-  }, [initializing]);
+    setIsLoading(false);
+  }
 
   useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    return subscriber;
-  }, [onAuthStateChanged]);
+    loadUserStorageData();
+  });
 
   return (
     <AuthContext.Provider
