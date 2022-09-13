@@ -2,7 +2,7 @@ import React from "react";
 import { Avatar, Flex, Text } from "native-base";
 
 import { RFValue } from "react-native-responsive-fontsize";
-import { useAuth } from "../../hooks/AuthContext";
+import { useAuth } from "../../hooks/auth";
 
 export function Header() {
   const { user } = useAuth();

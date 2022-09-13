@@ -25,7 +25,7 @@ import { AntDesign } from "@expo/vector-icons";
 import { Input } from "@components/Input";
 import { SocialLoginCards } from "@components/SocialLoginCards";
 
-import { useAuth } from "@hooks/AuthContext";
+import { useAuth } from "@hooks/auth";
 
 export function SignIn() {
   const { signInWithGoogle } = useAuth();

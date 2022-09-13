@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 
 import { Routes } from "./src/routes";
 
-import { AuthProvider } from "@hooks/AuthContext";
+import { AuthProvider } from "@hooks/auth";
 
 import { theme } from "@styles/theme";
 

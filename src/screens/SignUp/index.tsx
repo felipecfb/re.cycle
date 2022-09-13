@@ -20,7 +20,7 @@ import {
   ParamListBase,
   useNavigation,
 } from "@react-navigation/native";
-import { useAuth } from "@hooks/AuthContext";
+import { useAuth } from "@hooks/auth";
 
 export function SignUp() {
   const [name, setName] = useState("");
