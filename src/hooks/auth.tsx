@@ -93,6 +93,11 @@ function AuthProvider({ children }: AuthProviderProps) {
                   ...user.data(),
                 } as IUser;
 
+                await AsyncStorage.setItem(
+                  USER_COLLECTION,
+                  JSON.stringify(userData),
+                );
+
                 setUser(userData);
               }
             })
@@ -104,8 +109,8 @@ function AuthProvider({ children }: AuthProviderProps) {
       const { code } = error;
 
       if (code === "auth/user-not-found" || code === "auth/wrong-password") {
-        return Alert.alert("Login", "E-mail e/ou senha inválida.");
-      } else return Alert.alert("Login", "Não foi possível realizar o login");
+        return Alert.alert("Login", "Email address or password is invalid");
+      } else return Alert.alert("Login", "Could not login. Please try again");
     } finally {
       setIsLoading(false);
     }
