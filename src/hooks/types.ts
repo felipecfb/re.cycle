@@ -12,6 +12,7 @@ export interface AuthContextProps {
     email: string,
     password: string
   ) => void;
+  signInWithEmailAndPassword: (email: string, password: string) => void;
   signInWithGoogle: () => void;
 }
 

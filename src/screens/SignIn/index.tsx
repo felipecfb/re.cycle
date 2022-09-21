@@ -28,7 +28,14 @@ import { SocialLoginCards } from "@components/SocialLoginCards";
 import { useAuth } from "@hooks/auth";
 
 export function SignIn() {
-  const { signInWithGoogle } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const { signInWithEmailAndPassword, signInWithGoogle, isLoading } = useAuth();
+
+  function handleSignIn() {
+    signInWithEmailAndPassword(email, password);
+  }
 
   const [show, setShow] = useState(false);
 
@@ -48,6 +55,7 @@ export function SignIn() {
             type="text"
             placeholder="Email address"
             icon={<MaterialCommunityIcons name="email-multiple-outline" />}
+            onChangeText={setEmail}
           />
           <Input
             type={show ? "text" : "password"}
@@ -63,6 +71,7 @@ export function SignIn() {
                 />
               </Pressable>
             }
+            onChangeText={setPassword}
           />
           <Text
             color="green.900"
@@ -84,6 +93,8 @@ export function SignIn() {
             opacity: 0.8,
             bg: "green.900",
           }}
+          onPress={handleSignIn}
+          isLoading={isLoading}
         >
           Sign In
         </Button>

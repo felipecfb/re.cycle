@@ -70,6 +70,41 @@ function AuthProvider({ children }: AuthProviderProps) {
     }
   }
 
+  async function signInWithEmailAndPassword(email: string, password: string) {
+    try {
+      setIsLoading(true);
+      await auth()
+        .signInWithEmailAndPassword(email, password)
+        .then((account) => {
+          firestore()
+            .collection("users")
+            .doc(account.user.uid)
+            .get()
+            .then(async (user) => {
+              console.log(user);
+              if (user.exists) {
+                const userData = {
+                  ...user.data(),
+                } as IUser;
+
+                setUser(userData);
+              }
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        });
+    } catch (error: any) {
+      const { code } = error;
+
+      if (code === "auth/user-not-found" || code === "auth/wrong-password") {
+        return Alert.alert("Login", "E-mail e/ou senha inválida.");
+      } else return Alert.alert("Login", "Não foi possível realizar o login");
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   async function signInWithGoogle() {
     const { idToken } = await GoogleSignin.signIn();
 
@@ -111,6 +146,7 @@ function AuthProvider({ children }: AuthProviderProps) {
         user,
         isLoading,
         signUpWithEmailAndPassword,
+        signInWithEmailAndPassword,
         signInWithGoogle,
       }}
     >
